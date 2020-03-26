@@ -1,62 +1,62 @@
-sudo adduser neon_sys
-sudo passwd neon_sys
+sudo adduser product_sys
+sudo passwd product_sys
 WelComE.01!
 
-sudo usermod -g apache neon_sys
-groups neon_sys
+sudo usermod -g apache product_sys
+groups product_sys
 
 
 #web
-sudo chown -R neon_sys:apache /vol/data/speakintelligent.neon
+sudo chown -R product_sys:apache /vol/data/company.product
 
 
 
-sudo find /vol/data/speakintelligent.neon -type d -exec chmod 575 {} +
-sudo find /vol/data/speakintelligent.neon -type f -exec chmod 464 {} +
+sudo find /vol/data/company.product -type d -exec chmod 575 {} +
+sudo find /vol/data/company.product -type f -exec chmod 464 {} +
 
-sudo chmod -R 575 /vol/data/speakintelligent.neon/wkhtmltox/bin/wkhtmltopdf
+sudo chmod -R 575 /vol/data/company.product/wkhtmltox/bin/wkhtmltopdf
 
 
-sudo chmod -R 770 /vol/data/speakintelligent.neon/app/storage
-sudo chmod -R 770 /vol/data/speakintelligent.neon/public/neon.api/storage
+sudo chmod -R 770 /vol/data/company.product/app/storage
+sudo chmod -R 770 /vol/data/company.product/public/product.api/storage
 
 #service
-sudo chown -R neon_sys:apache /vol/data/speakintelligent.neon.service
+sudo chown -R product_sys:apache /vol/data/company.product.service
 
-sudo find /vol/data/speakintelligent.neon.service -type d -exec chmod 575 {} +
-sudo find /vol/data/speakintelligent.neon.service -type f -exec chmod 464 {} +
+sudo find /vol/data/company.product.service -type d -exec chmod 575 {} +
+sudo find /vol/data/company.product.service -type f -exec chmod 464 {} +
 
-sudo chmod -R 575 /vol/data/speakintelligent.neon.service/wkhtmltox/bin/wkhtmltopdf
+sudo chmod -R 575 /vol/data/company.product.service/wkhtmltox/bin/wkhtmltopdf
 
 
-touch /vol/data/cron_job_speakintelligent
-sudo chmod -R 770 /vol/data/speakintelligent.neon.service/storage
-sudo chown -R neon_sys:apache /vol/data/cron_job_speakintelligent
+touch /vol/data/cron_job_company
+sudo chmod -R 770 /vol/data/company.product.service/storage
+sudo chown -R product_sys:apache /vol/data/cron_job_company
 
 
 #Tmp
-sudo chown -R neon_sys:apache /vol/data/tmp
+sudo chown -R product_sys:apache /vol/data/tmp
 
 sudo find /vol/data/tmp -type d -exec chmod 775 {} +
 sudo find /vol/data/tmp -type f -exec chmod 775 {} +
 
 
 #app - nodejs
-sudo chown -R neon_sys:apache /vol/data/neon_nodejs_api
+sudo chown -R product_sys:apache /vol/data/product_nodejs_api
 
-sudo find /vol/data/neon_nodejs_api -type d -exec chmod 770 {} +
-sudo find /vol/data/neon_nodejs_api -type f -exec chmod 464 {} +
+sudo find /vol/data/product_nodejs_api -type d -exec chmod 770 {} +
+sudo find /vol/data/product_nodejs_api -type f -exec chmod 464 {} +
 
 
 #app setup
-su neon_sys
-cd /vol/data/neon_nodejs_api/
+su product_sys
+cd /vol/data/product_nodejs_api/
 pm2 app start
 pm2 start app.js
 
 #git
-sudo chmod -R 770 /vol/data/speakintelligent.neon.service/.git
-sudo chmod -R 770 /vol/data/speakintelligent.neon/.git
+sudo chmod -R 770 /vol/data/company.product.service/.git
+sudo chmod -R 770 /vol/data/company.product/.git
 
 
 #Mysql
@@ -67,10 +67,10 @@ sudo find /vol/data/mysql/ -type f -exec chmod 600 {} +
 
 #Crontab
 
-sudo chown -R neon_sys:apache /vol/data/cron_job_speakintelligent
+sudo chown -R product_sys:apache /vol/data/cron_job_company
 
 
-su neon_sys
+su product_sys
 crontab -e
 
 
